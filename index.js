@@ -9,6 +9,7 @@ import ModulesRoutes from './kambaz/modules/routes.js';
 import "dotenv/config";
 import session from 'express-session';
 import AssignmentsRoutes from './kambaz/assignments/routes.js';
+import EnrollmentsRoutes from './kambaz/enrollments/routes.js';
 const app = express();
 app.use(cors({
     credentials: true,
@@ -35,4 +36,5 @@ UserRoutes(app, database);
 CourseRoutes(app, database);
 ModulesRoutes(app, database);
 AssignmentsRoutes(app, database);
+EnrollmentsRoutes(app, database);
 app.listen(process.env.PORT || 4000);
