@@ -11,28 +11,9 @@ export default function EnrollmentsRoutes(app, db) {
         const newEnrollment = dao.enrollUserInCourse(currentUser._id, courseId);
         res.send(newEnrollment);
     }
-    /*const onUnenrollUserInCourse = (req, res) => {
-        let { user } = req.body || {};
-        if (!user) {
-            const currentUser = req.session["currentUser"];
-            if (!currentUser) {
-                return res.status(401).json({ error: "Unauthorized" });
-        }
-        user = currentUser._id;
-        }
-        const { courseId } = req.params;
-        const status = dao.unenrollUserInCourse(currentUser._id, courseId);
-        if(!status) {
-            res.status(401).send("EMPTY STATUS");
-            return;
-        }
-        res.send(status);
-    }*/
     const onUnenrollUserInCourse = async (req, res) => {
         const { courseId } = req.params;
         let { user } = req.body || {};
-        
-        // Use current user from session if user not provided in body
         if (!user) {
             const currentUser = req.session["currentUser"];
             if (!currentUser) {

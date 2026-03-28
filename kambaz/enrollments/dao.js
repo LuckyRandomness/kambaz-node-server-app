@@ -9,7 +9,7 @@ export default function EnrollmentsDao(db) {
   function unenrollUserInCourse(userId, courseId) {
     const { enrollments } = db;
     db.enrollments = enrollments.filter((enrollment) => 
-      (enrollment.course !== courseId && enrollment.user !== userId));
+      (enrollment.course !== courseId) || (enrollment.user !== userId));
   }
   return { enrollUserInCourse, unenrollUserInCourse };
 }

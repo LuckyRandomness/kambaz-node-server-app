@@ -6,7 +6,7 @@ export default function AssignmentsDao(db) {
  };
  function createAssignment(assignment) {
     const newAssignment = { ...assignment, _id: uuidv4() };
-    db.modules = [ ...db.assignments, newAssignment ];
+    db.assignments = [ ...db.assignments, newAssignment ];
     return newAssignment;
  };
  function deleteAssignment(assignmentId) {

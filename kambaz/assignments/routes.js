@@ -7,13 +7,8 @@ export default function AssignmentsRoutes(app, db) {
     res.json(assignments);
   }
   const createAssignmentForCourse = async (req, res) => {
-    const { courseId } = req.params;
-    const assignment = {
-        ...req.body,
-        course: courseId,
-    }
-    const newAssignment = dao.createAssignment(assignment);
-    res.send(newAssignment);
+    const newAssignment = dao.createAssignment(req.body);
+    res.json(newAssignment);
   }
   const deleteAssignment = (req, res) => {
     const { assignmentId } = req.params;
@@ -28,6 +23,6 @@ export default function AssignmentsRoutes(app, db) {
   }
   app.put("/api/courses/:courseId/assignments/:assignmentId", updateAssignment);
   app.delete("/api/courses/:courseId/assignments/:assignmentId", deleteAssignment);
-  app.post("/api/courses/:courseId/assignments", createAssignmentForCourse);
+  app.post("/api/courses/assignments", createAssignmentForCourse);
   app.get("/api/courses/:courseId/assignments", findAssignmentsForCourse);
 };
