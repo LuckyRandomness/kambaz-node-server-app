@@ -29,6 +29,20 @@ export default function EnrollmentsRoutes(app) {
             res.status(401).json({ error: "CANNOT"});
         }
     };
+    const findMyEnrollments = async (req, res) => {
+        let { userId } = req.params;
+        if (userId === "current") {
+            const currentUser = req.session["currentUser"];
+            if (!currentUser) {
+                res.sendStatus(401);
+                return;
+            }
+            userId = currentUser._id;
+        }
+        const enrollments = await dao.findMyEnrollments(userId);
+        res.send(enrollments);
+    }
     app.post("/api/courses/:courseId/enrollment", onEnrollUserInCourse);
     app.delete("/api/courses/:courseId/enrollment", onUnenrollUserInCourse);
+    app.get("/api/users/:userId/enrollments", findMyEnrollments);
 }

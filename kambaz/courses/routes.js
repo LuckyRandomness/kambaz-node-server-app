@@ -1,8 +1,9 @@
 import CoursesDao from "./dao.js";
 import EnrollmentsDao from "../enrollments/dao.js";
-export default function CourseRoutes(app, db) {
-  const dao = CoursesDao(db);
+export default function CourseRoutes(app) {
+  const dao = CoursesDao();
   const enrollmentsDao = EnrollmentsDao();
+
   const findAllCourses = async (req, res) => {
     const courses = await dao.findAllCourses();
     res.send(courses);
@@ -29,7 +30,7 @@ export default function CourseRoutes(app, db) {
   const deleteCourse = async (req, res) => {
     const { courseId } = req.params;
     await enrollmentsDao.unenrollAllUsersFromCourse(courseId);
-    const status = await dao.deleteCourse(courseId);
+    const status = await dao.deleteCourse(courseId);    
     res.send(status);
   };
   const updateCourse = async (req, res) => {
