@@ -1,6 +1,6 @@
 import EnrollmentsDao from "./dao.js";
-export default function EnrollmentsRoutes(app, db) {
-    const dao = EnrollmentsDao(db);
+export default function EnrollmentsRoutes(app) {
+    const dao = EnrollmentsDao();
     const onEnrollUserInCourse = (req, res) => {
         const currentUser = req.session["currentUser"];
         if(!currentUser) { 
