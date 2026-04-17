@@ -4,7 +4,7 @@ export default function EnrollmentsRoutes(app) {
     const onEnrollUserInCourse = (req, res) => {
         const currentUser = req.session["currentUser"];
         if(!currentUser) { 
-            console.log("NO USER ERROR");
+            res.sendStatus(401);
             return;
         }
         const { courseId } = req.params;

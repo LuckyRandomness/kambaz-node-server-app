@@ -1,6 +1,6 @@
 import { v4 as uuidv4 } from "uuid";
 import model from "../courses/model.js";
-export default function ModulesDao(db) {
+export default function ModulesDao() {
  async function findModulesForCourse(courseId) {
    const course = await model.findById(courseId);
    return course.modules;
