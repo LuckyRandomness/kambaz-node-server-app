@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+import questionsSchema from "../questions/schema.js";
 const schema = new mongoose.Schema(
   {
     _id: String,
@@ -15,7 +16,8 @@ const schema = new mongoose.Schema(
     assignmentGroup: String,
     shuffleAnswers: Boolean,
     timeLimit: Boolean,
-    timeLimitAmt: Number
+    timeLimitAmt: Number,
+    questions: [questionsSchema]
  }
 );
 export default schema;
